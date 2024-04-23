@@ -19,9 +19,17 @@ Enable readers to explorethe authors details like number posts and  posts  by a 
 
 
 ![Alt Text](https://i.imgur.com/H5VV5pu.png)
+
+
 ![Alt Text](https://i.imgur.com/el6wp8K.png)
+
+
 ![Alt Text](https://i.imgur.com/zYo9Onf.png)
+
+
 ![Alt Text](https://i.imgur.com/a1qdZAi.png)
+
+
 ![Alt Text](https://i.imgur.com/5uHWdPu.png)
 
 
