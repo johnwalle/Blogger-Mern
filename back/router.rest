@@ -1,0 +1,80 @@
+#### CREATING A USER
+POST http://localhost:8000/api/users
+Content-Type: application/json
+
+{
+    "name": "Shani",
+    "email": "shani@gmail.com",
+    "password": "shani1234"
+
+}
+### LOGIN USER
+POST  http://localhost:8000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "shani@gmail.com",
+    "password": "shani1234"
+
+
+
+}
+#### editing user info
+
+PUT  http://localhost:8000/api/users/edit-user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTk0MjA3N2YxMjlhMmIzOGY0OGEyZSIsImlhdCI6MTcxMjkzMTQ1NiwiZXhwIjoxNzE1NTIzNDU2fQ.zkC8N7ft2fDRh94er5RJQJwp-YyTUlrKHULI0jrs2QE
+
+{
+    "name": "shek",
+    "email": "shek@gmail.com",
+    "currentPassword": "moran4321",
+    "newPassword" : "shek1234",
+    "confirmNewPassword"  : "shek1234"
+
+
+}
+
+
+
+#### GETTIN ALL USERS
+GET http://localhost:8000/api/users
+
+
+#### GETTIGN A USER BY ID
+
+GET http://localhost:8000/api/users/66196fbcda9cd412ae416ad1
+
+
+#### gettinf all posts
+
+
+POST http://localhost:8000/api/posts/create
+Content-Type: application/json
+
+{
+   "title" : "Reece is back", 
+   "description" :"that is my choice that is the thing to happen in life that is the last thing to mak",
+    "category" : "Sport"
+}
+
+#####
+
+GET  http://localhost:8000/api/posts
+
+#####
+GET http://localhost:8000/api/posts/categories/Business
+
+
+### getting a post
+
+GET http://localhost:8000/api/posts/6619945f1fa3ff037b2cdcf3
+
+
+#### GETTIGN POST BY AUTHOR
+GET http://localhost:8000/api/posts/user/66196fbcda9cd412ae416ad1
+
+
+#### DELETE A POST 
+DELETE  http://localhost:8000/api/posts/delete-post/6619945f1fa3ff037b2cdcf3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MTk0MjA3N2YxMjlhMmIzOGY0OGEyZSIsImlhdCI6MTcxMjk1NTkyMywiZXhwIjoxNzE1NTQ3OTIzfQ.-FVThBACGEpkSpwuDpkv4bUXeo6yfQSJZz_O044XhT4
