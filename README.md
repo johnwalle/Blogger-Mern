@@ -10,3 +10,7 @@ Enjoy a user-friendly interface that allows you to create new blog posts effortl
 ### Edit and Update Posts:
 Need to make changes to your published posts? Blogger App makes it simple to edit and update your existing posts. Make revisions, correct errors, or add new information easily.
 ![Alt Text](https://i.imgur.com/ZyT8kqb.png)
+
+### Delete Posts: 
+When you no longer need a post, Blogger App allows you to delete it from your blog. Maintain a clean and organized blog by removing outdated or irrelevant content.
+![Alt Text](https://i.imgur.com/JeIxdP5.png)
