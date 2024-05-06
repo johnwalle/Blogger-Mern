@@ -1,0 +1,16 @@
+{
+  "name": "post",
+  "version": "1.0.0",
+  "description": "\"# Blogger-Mern\"",
+  "main": "index.js",
+  "scripts": {
+    "build:backend": "cd back && nodemon server.js",
+    "build:frontend": "cd front  && npm run start",
+    "build": "npm run build:backend && npm run build:frontend",
+    "vercel:dev": "npm run build && vercel dev",
+    "vercel:deploy": "npm run build && vercel"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

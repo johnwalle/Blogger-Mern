@@ -19,7 +19,7 @@ const EditPost = () => {
           `http://localhost:8000/api/posts/${postID}`
         );
         setSinglePost(response.data);
-        console.log("The post", response.data);
+        console.log("image", response.data.image);
       } catch (error) {
         console.log(error.response.data.message);
       }
@@ -42,6 +42,7 @@ const EditPost = () => {
       setTitle(singlePost.title);
       setCategory(singlePost.category);
       setDescription(singlePost.description);
+      setImage(singlePost.image)
     }
   }, [singlePost]);
 
@@ -80,7 +81,7 @@ const EditPost = () => {
       console.log("Error updating post:", error);
       setError(
         error.response?.data?.message ||
-          "Error updating post. Please try again."
+        "Error updating post. Please try again."
       );
     }
     setIsUpdating(true);
