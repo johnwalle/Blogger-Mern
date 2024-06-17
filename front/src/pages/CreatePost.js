@@ -53,7 +53,7 @@ const CreatePost = () => {
       console.log("Error creating post:", error);
       setError(
         error.response?.data?.message ||
-          "Error creating post. Please try again."
+        "Error creating post. Please try again."
       );
     }
     setIsLoading(false);
@@ -91,9 +91,12 @@ const CreatePost = () => {
               <option value="">Select a category</option>
               <option value="Agriculture">Agriculture</option>
               <option value="Business">Business</option>
+              <option value="Art">Art</option>
               <option value="Education">Education</option>
-              <option value="Entertainment">Entertainment</option>
-              <option value="Technology">Technology</option>
+              <option value="Sport">Sport</option>
+              <option value="Investment">Investment</option>
+              <option value="Weather">Weather</option>
+              <option value="Uncategorized">Uncategorized</option>
             </select>
           </div>
           <div className="mb-4">

@@ -14,6 +14,7 @@ import CategoryPosts from "./pages/CategoryPosts";
 import PostDetail from "./pages/PostDetail";
 import EditPost from "./pages/EditPost";
 import Dashboard from './pages/Dashboard'
+import NotFound from "./pages/Notfound";
 
 function App() {
   const { user } = useAuthContext();
@@ -32,14 +33,18 @@ function App() {
         <Route path="/posts/categories/:category" element={<CategoryPosts />} />
         <Route path="/post/:postID" element={<PostDetail />} />
         <Route path="/myposts" element={<Dashboard />} />
+        <Route path="*" element={<NotFound />} />
+
         <Route
           path="/posts/:postID/edit"
           element={user ? <EditPost /> : <Login />}
-        />
-      </Routes>
+        />        
+      </Routes>     
       <Footer />
     </Router>
   );
 }
 
 export default App;
+
+
