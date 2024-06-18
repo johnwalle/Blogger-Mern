@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <footer className="bg-gray-800 text-white py-4 fixed bottom-0 left-0 w-full">
-            <div className="container mx-auto text-center">
+            <div className="mx-auto text-center">
                 <div className="flex flex-wrap justify-center">
                     <Link
                         to="/posts/categories/Agriculture"
@@ -56,7 +56,7 @@ const Footer = () => {
                     </Link>
                 </div>
             </div>
-            <div className="container mx-auto text-center mt-4">
+            <div className="mx-auto text-center mt-4">
                 &copy; {new Date().getFullYear()} Blogger App By <span className="text-red-300 font-semibold">Leojo</span>
             </div>
         </footer>

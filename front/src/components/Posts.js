@@ -32,7 +32,7 @@ const Posts = () => {
     }
 
     return (
-        <section className="px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-100">
+        <section className="px-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-100">
             {posts.length > 0 ? (
                 posts.map(({ _id, image, category, description, creator, title , createdAt, updatedAt}) => (
                     <PostItems

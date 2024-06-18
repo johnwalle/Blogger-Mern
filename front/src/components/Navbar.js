@@ -12,9 +12,16 @@ const Navbar = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const menuClose = () => {
+    setMenuOpen(false);
+  }
+
+
   const logoutHandler = () => {
     logout();
   };
+
+
 
   return (
     <nav className="bg-gray-800 fixed top-0 w-full z-50">
@@ -23,12 +30,15 @@ const Navbar = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <span className="text-white font-bold text-xl">
-                <Link
-                  to="/"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Blogger
-                </Link>
+                <button onClick={menuClose}>
+                  <Link
+                    to="/"
+                    className="text-gray-300  hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Blogger
+                  </Link>
+                </button>
+
               </span>
             </div>
           </div>
@@ -57,7 +67,7 @@ const Navbar = () => {
                   to="/profile"
                   className="text-gray-300  hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  <div className="flex items-center justify-center"> 
+                  <div className="flex items-center justify-center">
                     <div>
                       <img
                         src={
@@ -125,45 +135,57 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {user ? (
               <>
-                <Link
-                  to="/create"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Create Post
-                </Link>
-                <Link
-                  to="/author"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Authors
-                </Link>
+                <button onClick={menuClose} className="w-full">
+                  <Link
+                    to="/create"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Create Post
+                  </Link>
+                </button>
+                <button onClick={menuClose} className="w-full">
+                  <Link
+                    to="/author"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Authors
+                  </Link>
+                </button>
+
+                <button onClick={menuClose} className="w-full">
+                  <Link
+                    to="/profile"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    {user.name}
+                  </Link>
+                </button>
+
                 <button
                   onClick={logoutHandler}
-                  className="text-gray-100 border-cyan-400 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-sm font-medium"
+                  className="w-full text-gray-100 border-cyan-400 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Log out
                 </button>
-                <Link
-                  to="/profile"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  {user.name}
-                </Link>
               </>
             ) : (
               <>
-                <Link
-                  to="/author"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Authors
-                </Link>
-                <Link
-                  to="/login"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Login
-                </Link>
+                <button onClick={menuClose} className="w-full">
+                  <Link
+                    to="/author"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Authors
+                  </Link>
+                </button>
+                <button onClick={menuClose} className="w-full">
+                  <Link
+                    to="/login"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Login
+                  </Link>
+                </button>
               </>
             )}
           </div>

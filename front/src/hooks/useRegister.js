@@ -7,6 +7,7 @@ const useRegister = () => {
   const { dispatch } = useAuthContext();
 
   const register = async (name, setName, email, setEmail, password, setPassword) => {
+
     try {
       const response = await axios.post(`http://localhost:8000/api/users`, {
         name,
@@ -16,6 +17,7 @@ const useRegister = () => {
 
       const data = response.data;
 
+      
       if (response.status === 200) {
         // set the fields empty
         setName('');

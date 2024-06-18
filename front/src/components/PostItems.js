@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PostAuthor from "./PostAuthor";
+import DOMPurify from "dompurify";
 
 const PostItems = ({
   postID,
@@ -38,13 +39,14 @@ const PostItems = ({
     return categoryStyling[category] || "bg-gray-500 hover:bg-gray-600";
   };
 
-  const extractedDescription = document.createElement("div");
-  extractedDescription.innerHTML = description;
-  const descriptionText =
-    extractedDescription.textContent || extractedDescription.innerText;
+  // const extractedDescription = document.createElement("div");
+  // extractedDescription.innerHTML = description;
+  // const descriptionText =
+  //   extractedDescription.textContent || extractedDescription.innerText;
 
   return (
-    <article className="flex px-7 flex-col shadow-lg bg-white rounded-lg  border-gray-300 mb-5">
+
+    <article className="flex px-7 flex-col shadow-lg bg-white rounded-lg border-gray-300 mb-5 ">
       <div className="rounded-lg w-full h-48 md:h-32 mb-4">
         <img
           src={`http://localhost:8000/uploads/${image}`}
@@ -52,19 +54,28 @@ const PostItems = ({
           className="rounded-lg w-full h-full object-cover"
         />
       </div>
-      <div className="flex flex-col flex-grow">
-        <Link to={`/post/${postID}`}>
-          <h3 className="pl-3 text-xl md:text-2xl font-bold mb-2 md:mb-4 truncate">
-            {title}
-          </h3>
-        </Link>
-        <div className="max-w-full pb-5 ">
-          <p className="text-overflow-ellipsis pl-2 overflow-hidden">
-            <span className="line-clamp-3">{descriptionText}</span>
-          </p>
+      <div className="flex flex-col flex-grow justify-between">
+        <div>
+          <Link to={`/post/${postID}`}>
+            <h3 className="pl-3 text-xl md:text-2xl font-bold mb-2 md:mb-4 truncate">
+              {title}
+            </h3>
+          </Link>
+          <div className="max-w-full pb-5 overflow-hidden">
+            <div
+              className="text-overflow-ellipsis pl-2 line-clamp-3"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(
+                  description.length > 250
+                    ? `${description.slice(0, 250)}...`
+                    : description
+                ),
+              }}
+            />
+          </div>
         </div>
-        <div className="flex pt-4 pb-4 justify-between items-center">
-          <div className="pl-4">
+        <div className="flex py-6 justify-between items-end">
+          <div className="">
             <PostAuthor creator={creator} createdAt={createdAt} updatedAt={updatedAt} />
           </div>
           <div>
@@ -78,6 +89,8 @@ const PostItems = ({
         </div>
       </div>
     </article>
+
+
   );
 };
 

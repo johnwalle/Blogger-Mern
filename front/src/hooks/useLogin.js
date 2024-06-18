@@ -10,13 +10,17 @@ const useLogin = () => {
 
     const login = async (email, setEmail, password, setPassword) => {
 
+        console.log("email:", email , 'password:', password)
+
+
         try {
-            const response = await axios.post("http://localhost:5000/api/users/login", {
+            const response = await axios.post("http://localhost:8000/api/users/login", {
                 email,
                 password
             })
 
             const data = response.data
+            console.log('data:', data);
 
             if (response.status === 200) {
 
@@ -33,7 +37,7 @@ const useLogin = () => {
             }
 
         } catch (error) {
-            setError('Invalid email or password.')
+            setError(error.response.data.message);
         }
 
     }

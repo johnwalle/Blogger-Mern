@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
+import DOMPurify from "dompurify";
+
 
 const PostDetail = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,13 +35,10 @@ const PostDetail = () => {
     return <Loader />;
   }
 
-  const extractedDescription = document.createElement("div");
-  extractedDescription.innerHTML = singlePost?.description;
-  const descriptionText =
-    extractedDescription.textContent || extractedDescription.innerText;
+
 
   return (
-    <section className="mt-24 mb-52 bg-gray-100 mx-auto shadow-lg rounded-lg p-8">
+    <section className="mt-24 mb-52  mx-auto rounded-lg p-8">
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center justify-between mb-4">
           <PostAuthor
@@ -60,14 +59,19 @@ const PostDetail = () => {
         {singlePost ? (
           <>
             <h1 className="text-3xl font-bold mb-4">{singlePost.title}</h1>
-            <div className="mb-4">
+            <div className="flex justify-center items-center mb-4">
               <img
                 src={`http://localhost:8000/uploads/${singlePost.image}`}
                 alt="Thumbnail"
-                className="w-full"
+                className="w-full max-h-[450px]"
               />
             </div>
-            <p className="mb-4">{descriptionText}</p>
+            <div className="max-w-full pb-5 overflow-hidden">
+              <div
+                className="text-overflow-ellipsis pl-2"
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(singlePost?.description) }}
+              />
+            </div>
           </>
         ) : (
           <p>No post found.</p>
