@@ -37,4 +37,6 @@ useRouter.get("/", gettingAllUsers);
 useRouter.get("/:id", gettingUserById);
 useRouter.put("/edit-user", authMiddleware, editUser);
 
+
+
 module.exports = useRouter;

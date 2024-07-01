@@ -60,7 +60,7 @@ Content-Type: application/json
 
 #####
 
-GET  http://localhost:8000/api/posts
+GET  https://jo-blogger.vercel.app/api/posts
 
 #####
 GET http://localhost:8000/api/posts/categories/Business
