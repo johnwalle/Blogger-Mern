@@ -17,7 +17,7 @@ const Dashboard = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/posts/user/${user.id}`
+        `${process.env.REACT_APP_API_URL}/api/posts/user/${user.id}`
       );
       setMyPosts(response.data);
     } catch (error) {
@@ -35,7 +35,7 @@ const Dashboard = () => {
     setIsDeleting(true);
     try {
       const response = await axios.delete(
-        `http://localhost:8000/api/posts/delete-post/${postId}`,
+        `${process.env.REACT_APP_API_URL}/api/posts/delete-post/${postId}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -72,7 +72,7 @@ const Dashboard = () => {
               >
                 <div className="relative">
                   <img
-                    src={`http://localhost:8000/uploads/${post.image}`}
+                    src={`${process.env.REACT_APP_API_URL}/uploads/${post.image}`}
                     alt={post.title}
                     className="w-full h-32 object-cover"
                   />

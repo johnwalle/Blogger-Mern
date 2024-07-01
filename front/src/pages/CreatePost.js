@@ -30,7 +30,7 @@ const CreatePost = () => {
       formData.append("myImage", image);
 
       const response = await axios.post(
-        `http://localhost:8000/api/posts/create`,
+        `${process.env.REACT_APP_API_URL}/api/posts/create`,
         formData,
         {
           headers: {

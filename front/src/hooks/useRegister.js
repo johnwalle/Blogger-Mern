@@ -7,9 +7,11 @@ const useRegister = () => {
   const { dispatch } = useAuthContext();
 
   const register = async (name, setName, email, setEmail, password, setPassword) => {
-
+    const apiUrl = process.env.REACT_APP_API_URL;
+    console.log('apiUrl:', apiUrl);
+    
     try {
-      const response = await axios.post(`http://localhost:8000/api/users`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/users`, {
         name,
         email,
         password,
@@ -17,7 +19,7 @@ const useRegister = () => {
 
       const data = response.data;
 
-      
+
       if (response.status === 200) {
         // set the fields empty
         setName('');

@@ -18,7 +18,7 @@ const AuthorPosts = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/posts/user/${creator}`
+          `${process.env.REACT_APP_API_URL}/api/posts/user/${creator}`
         );
 
         setAuthorPosts(response.data);

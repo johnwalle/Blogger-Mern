@@ -17,7 +17,7 @@ const EditPost = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/posts/${postID}`
+          `${process.env.REACT_APP_API_URL}/api/posts/${postID}`
         );
         setSinglePost(response.data);
         console.log("image", response.data.image);
@@ -58,7 +58,7 @@ const EditPost = () => {
       formData.append("myImage", image);
 
       const response = await axios.put(
-        `http://localhost:8000/api/posts/edit-post/${postID}`,
+        `${process.env.REACT_APP_API_URL}/api/posts/edit-post/${postID}`,
         formData,
         {
           headers: {

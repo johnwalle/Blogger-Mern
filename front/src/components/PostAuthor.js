@@ -11,7 +11,7 @@ const PostAuthor = ({ creator, postID, createdAt, updatedAt }) => {
     const fetchAuthor = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/users/${creator}`
+          `${process.env.REACT_APP_API_URL}/api/users/${creator}`
         );
         const data = await response.json();
         const { name, avatar: authorAvatar } = data;
@@ -38,7 +38,7 @@ const PostAuthor = ({ creator, postID, createdAt, updatedAt }) => {
     <Link to={`/posts/user/${creator}`} className="flex items-center">
       <div className="mr-3">
         <img
-          src={avatar ? `http://localhost:8000/avatars/${avatar}` : NoAvatar}
+          src={avatar ? `${process.env.REACT_APP_API_URL}/avatars/${avatar}` : NoAvatar}
           alt="Post Thumbnail"
           className="rounded-full border border-white w-12 h-12"
         />

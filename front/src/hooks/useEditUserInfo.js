@@ -14,7 +14,7 @@ const useEditUserInfo = () => {
         
         setIsLoading(true)
         try {
-            const response = await axios.put("http://localhost:8000/api/users/edit-user", {
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/users/edit-user`, {
                 name,
                 email,
                 currentPassword,

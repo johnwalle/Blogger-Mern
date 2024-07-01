@@ -13,7 +13,7 @@ const useChangeAvatar = () => {
       const postData = new FormData();
       postData.set("myAvatar", avatar);
       const response = await axios.put(
-        `http://localhost:8000/api/users/change-avatar`,
+        `${process.env.REACT_APP_API_URL}/api/users/change-avatar`,
         postData,
         {
           headers: { Authorization: `Bearer ${user.token}` },

@@ -49,7 +49,7 @@ const PostItems = ({
     <article className="flex px-7 flex-col shadow-lg bg-white rounded-lg border-gray-300 mb-5 ">
       <div className="rounded-lg w-full h-48 md:h-32 mb-4">
         <img
-          src={`http://localhost:8000/uploads/${image}`}
+          src={`${process.env.REACT_APP_API_URL}/uploads/${image}`}
           alt="Post Thumbnail"
           className="rounded-lg w-full h-full object-cover"
         />

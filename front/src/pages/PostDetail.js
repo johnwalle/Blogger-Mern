@@ -18,7 +18,7 @@ const PostDetail = () => {
       setIsLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/posts/${postID}`
+          `${process.env.REACT_APP_API_URL}/api/posts/${postID}`
         );
         setSinglePost(response.data);
         console.log("The post", response.data);
@@ -61,7 +61,7 @@ const PostDetail = () => {
             <h1 className="text-3xl font-bold mb-4">{singlePost.title}</h1>
             <div className="flex justify-center items-center mb-4">
               <img
-                src={`http://localhost:8000/uploads/${singlePost.image}`}
+                src={`${process.env.REACT_APP_API_URL}/uploads/${singlePost.image}`}
                 alt="Thumbnail"
                 className="w-full max-h-[450px]"
               />
