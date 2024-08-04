@@ -38,7 +38,7 @@ const PostAuthor = ({ creator, postID, createdAt, updatedAt }) => {
     <Link to={`/posts/user/${creator}`} className="flex items-center">
       <div className="mr-3">
         <img
-          src={avatar ? `${process.env.REACT_APP_API_URL}/avatars/${avatar}` : NoAvatar}
+          src={avatar ? `${avatar}` : NoAvatar}
           alt="Post Thumbnail"
           className="rounded-full border border-white w-12 h-12"
         />

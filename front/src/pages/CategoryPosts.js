@@ -35,7 +35,7 @@ const CategoryPosts = () => {
 
   return (
     <>
-      <section className="mx-12 px-4 mt-24 mb-52 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-100">
+        <section className="mt-24 mx-2 pb-44 sm:mx-2 md:mx-2 px-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-100">
         {categoryPosts.length > 0 ? (
           categoryPosts.map(({ _id, image, createdAt, updatedAt, category, description, creator, title }) => (
             <PostItems

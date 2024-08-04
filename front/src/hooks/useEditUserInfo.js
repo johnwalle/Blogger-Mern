@@ -26,7 +26,6 @@ const useEditUserInfo = () => {
                 }
             });
 
-            console.log("user info", name, email, currentPassword, newPassword, confirmNewPassword);
             
             const data = response.data
             console.log(data);

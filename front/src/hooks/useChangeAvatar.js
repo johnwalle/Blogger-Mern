@@ -11,37 +11,38 @@ const useChangeAvatar = () => {
     setIsLoading(true);
     try {
       const postData = new FormData();
-      postData.set("myAvatar", avatar);
+      postData.set("avatar", avatar);
       const response = await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/users/change-avatar`,
+        `${process.env.REACT_APP_API_URL}/api/users/avatar`,
         postData,
         {
           headers: { Authorization: `Bearer ${user.token}` },
         }
       );
-      setAvatar(response?.data.avatar);
 
       const data = response.data;
-      console.log(data);
+      // Save the user in local storage
+      localStorage.setItem("user", JSON.stringify(data));
+      // Dispatch the login with the updated user data
 
-      if (response.status === 200) {
-        // save the user in local storage
-        localStorage.setItem("user", JSON.stringify(data));
-        setAvatar(null); // Set avatar state to null
-        // dispatch the login
-        dispatch({ type: "LOGIN", payload: data });
-      }
+      dispatch({ type: "LOGIN", payload: data });
+      setAvatar(null);
+      setIsLoading(false);
+      return data;
     } catch (error) {
+      setIsLoading(false);
       if (
         error.response &&
         error.response.data &&
         error.response.data.message
       ) {
         setError(error.response.data.message);
-        console.log(error);
+        return { error: error.response.data.message };
+      } else {
+        // setError("An error occurred while changing the avatar.");
+        return { error: "An error occurred while changing the avatar." };
       }
     }
-    setIsLoading(false);
   };
 
   return { error, changeAvatar, isLoading };

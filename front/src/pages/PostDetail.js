@@ -21,9 +21,8 @@ const PostDetail = () => {
           `${process.env.REACT_APP_API_URL}/api/posts/${postID}`
         );
         setSinglePost(response.data);
-        console.log("The post", response.data);
       } catch (error) {
-        console.log(error.response.data.message);
+        console.error(error);
       }
       setIsLoading(false);
     };
@@ -61,9 +60,9 @@ const PostDetail = () => {
             <h1 className="text-3xl font-bold mb-4">{singlePost.title}</h1>
             <div className="flex justify-center items-center mb-4">
               <img
-                src={`${process.env.REACT_APP_API_URL}/uploads/${singlePost.image}`}
+                src={singlePost.image}
                 alt="Thumbnail"
-                className="w-full max-h-[450px]"
+                className="w-full h-auto max-h-[450px] object-contain"
               />
             </div>
             <div className="max-w-full pb-5 overflow-hidden">

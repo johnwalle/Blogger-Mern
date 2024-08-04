@@ -72,7 +72,7 @@ const Navbar = () => {
                       <img
                         src={
                           user.avatar
-                            ? `${process.env.REACT_APP_API_URL}/avatars/${user.avatar}`
+                            ? `${user.avatar}`
                             : NoAvatar
                         }
                         alt="Post Thumbnail"

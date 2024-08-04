@@ -12,7 +12,6 @@ const Authors = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users`);
         const authorsData = response.data;
-        console.log("authors", authorsData);
         setAuthors(authorsData);
       } catch (error) {
         console.error(error);
@@ -32,7 +31,7 @@ const Authors = () => {
                 <div className="bg-white rounded-lg shadow-md p-2 sm:p-4">
                   <img
                     src={
-                      avatar ? `http://localhost:8000/avatars/${avatar}` : NoAvatar
+                      avatar ? `${avatar}` : NoAvatar
                     }
                     alt={name}
                     className="w-24 h-24 sm:w-32 sm:h-32 mx-auto rounded-full mb-2 sm:mb-4"

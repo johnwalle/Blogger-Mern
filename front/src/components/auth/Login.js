@@ -3,34 +3,21 @@ import './auth.css'
 import useLogin from "../../hooks/useLogin";
 import { Link } from 'react-router-dom';
 
-
-
-
 const LoginForm = () => {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { login, error } = useLogin();
+    const { login, error, isLoading } = useLogin();
 
     const inputRef = useRef(null);
 
     useEffect(() => {
-
         inputRef.current.focus();
-
     }, [])
-
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        // Handle login logic here
-
         await login(email, setEmail, password, setPassword);
-
     };
-
-
-
 
     return (
         <div className='register-main-container'>
@@ -62,8 +49,12 @@ const LoginForm = () => {
                         required
                     />
                     <span class="forgot-password"><Link to='/signup' >Not have an account ?</Link></span>
-                    <input class="login-button" type="submit" value="Login" />
-
+                    <input
+                        class="login-button"
+                        type="submit"
+                        value={isLoading ? 'Loading...' : 'Login'}
+                        disabled={isLoading}
+                    />
                 </form>
             </div>
         </div>

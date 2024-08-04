@@ -8,14 +8,18 @@ const ChangeAvatar = () => {
   const [avatar, setAvatar] = useState(null);
   const { changeAvatar, isLoading, error } = useChangeAvatar();
 
+
   const handleAvatarChange = (e) => {
     setAvatar(e.target.files[0]);
   };
 
   const handleAvatarUpload = async (e) => {
     e.preventDefault();
-    await changeAvatar(avatar, setAvatar);
-    setAvatar(null);
+    try {
+      await changeAvatar(avatar);
+    } catch (err) {
+      // Handle error tesfaye 
+    }
   };
 
   return (
@@ -24,11 +28,7 @@ const ChangeAvatar = () => {
         <div className="mb-4">
           <div className="mb-4 flex justify-center items-center">
             <img
-              src={
-                user.avatar
-                  ? `${process.env.REACT_APP_API_URL}/avatars/${user.avatar}`
-                  : NoAvatar
-              }
+              src={user.avatar ? user.avatar : NoAvatar}
               alt="Post Thumbnail"
               className="rounded-full border border-white w-24 h-24"
             />

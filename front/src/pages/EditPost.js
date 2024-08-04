@@ -49,13 +49,13 @@ const EditPost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsUpdating(false);
+    setIsUpdating(true);
     try {
       const formData = new FormData();
       formData.append("title", title);
       formData.append("category", category);
       formData.append("description", description);
-      formData.append("myImage", image);
+      formData.append("image", image);
 
       const response = await axios.put(
         `${process.env.REACT_APP_API_URL}/api/posts/edit-post/${postID}`,
@@ -85,7 +85,7 @@ const EditPost = () => {
         "Error updating post. Please try again."
       );
     }
-    setIsUpdating(true);
+    setIsUpdating(false);
   };
 
   return (

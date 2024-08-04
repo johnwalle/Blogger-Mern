@@ -4,12 +4,14 @@ import axios from 'axios';
 
 const useRegister = () => {
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const { dispatch } = useAuthContext();
 
   const register = async (name, setName, email, setEmail, password, setPassword) => {
+    setIsLoading(true);
+    setError('');
     const apiUrl = process.env.REACT_APP_API_URL;
-    console.log('apiUrl:', apiUrl);
-    
+
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/users`, {
         name,
@@ -19,7 +21,6 @@ const useRegister = () => {
 
       const data = response.data;
 
-
       if (response.status === 200) {
         // set the fields empty
         setName('');
@@ -27,7 +28,6 @@ const useRegister = () => {
         setPassword('');
         setError(null);
 
-        console.log('name:', name);
 
         // save the user to the local storage
         localStorage.setItem('user', JSON.stringify(data));
@@ -37,10 +37,12 @@ const useRegister = () => {
       }
     } catch (error) {
       setError('User already registered.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  return { register, error };
+  return { register, error, isLoading };
 };
 
 export default useRegister;

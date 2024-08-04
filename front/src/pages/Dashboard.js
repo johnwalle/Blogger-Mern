@@ -72,7 +72,7 @@ const Dashboard = () => {
               >
                 <div className="relative">
                   <img
-                    src={`${process.env.REACT_APP_API_URL}/uploads/${post.image}`}
+                    src={post.image}
                     alt={post.title}
                     className="w-full h-32 object-cover"
                   />

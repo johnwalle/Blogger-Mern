@@ -37,7 +37,6 @@ export const PostContextProvider = ({ children }) => {
         localStorage.setItem("posts", JSON.stringify(state.posts));
     }, [state.posts]);
 
-    console.log("PostContexts: ", state);
 
     return (
         <PostContext.Provider value={{ ...state, dispatch }}>
