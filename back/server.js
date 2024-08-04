@@ -14,12 +14,7 @@ app.use(cors());
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 
-// Serve the /uploads directory as a static folder
-const uploadsPath = path.join(__dirname, 'uploads');
-const avatarUploadPath = path.join(__dirname, 'avatars');
 
-app.use('/uploads', express.static(uploadsPath));
-app.use('/avatars', express.static(avatarUploadPath));
 
 // Connect with the database
 connectDB();
