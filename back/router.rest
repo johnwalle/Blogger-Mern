@@ -8,6 +8,9 @@ Content-Type: application/json
     "password": "shani1234"
 
 }
+
+
+
 ### LOGIN USER
 POST  http://localhost:8000/api/users/login
 Content-Type: application/json

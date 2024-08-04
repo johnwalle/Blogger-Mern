@@ -1,42 +1,34 @@
 const express = require("express");
-const useRouter = express.Router();
+const userRouter = express.Router();
 const multer = require("multer");
-const path = require("path");
-const { authMiddleware } = require("../Middleware/authMiddleware");
+const { authMiddleware } = require("../middleware/authMiddleware");
 const {
   creatingUser,
   loginUser,
   gettingAllUsers,
   gettingUserById,
   editUser,
-  changeAvatar,
+  changeAvatar
 } = require("../controller/userController");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.resolve(__dirname, "../avatars/")); // Adjust the destination path
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  },
-});
+const upload = multer();
 
-// Initialize the upload variable
-const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 1024 * 1024 * 5, // 5 MB (in bytes)
-  },
-});
+// Update user avatar
+userRouter.put('/avatar', authMiddleware, upload.single('avatar'), changeAvatar);
 
-useRouter.put('/change-avatar', authMiddleware, upload.single('myAvatar'), changeAvatar);
-useRouter.post("/", creatingUser);
-useRouter.post("/login", loginUser);
-useRouter.get("/", gettingAllUsers);
-useRouter.get("/:id", gettingUserById);
-useRouter.put("/edit-user", authMiddleware, editUser);
+// Create a new user
+userRouter.post("/", creatingUser);
 
+// Login a user
+userRouter.post("/login", loginUser);
 
+// Get all users
+userRouter.get("/", gettingAllUsers);
 
-module.exports = useRouter;
+// Get a user by ID
+userRouter.get("/:id", gettingUserById);
+
+// Update a user
+userRouter.put("/", authMiddleware, editUser);
+
+module.exports = userRouter;

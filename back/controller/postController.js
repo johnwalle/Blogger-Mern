@@ -1,54 +1,38 @@
 const Post = require('../model/postmodel');
 const User = require('../model/usermodel')
-
+const cloudinary = require('../config/cloudinary.config');
 
 /// creating posts 
 const createPost = async (req, res) => {
   try {
     const { title, description, category } = req.body;
 
-    // Check if the inputs are filled
+    // Check if the required inputs are filled
     if (!title || !description || !category) {
-      return res.status(400).json({ message: "Please fill all the fields." });
+      return res.status(400).json({ message: "Please fill all the required fields." });
     }
 
-    // Check if an image was uploaded
-    if (!req.file) {
-      return res.status(400).json({ message: "No image uploaded." });
+    const imageFile = req.file?.buffer;
+
+    // If no image is provided, return an error
+    if (!imageFile) {
+      return res.status(400).json({ message: "Please provide an image." });
     }
 
-    // Get the file path of the uploaded image
-    const imagePath = req.file.filename;
+    // Upload the image to Cloudinary
+    const imageUrl = await uploadImageToCloudinary(imageFile);
 
     // Create a new post instance
     const newPost = await Post.create({
       title,
       description,
       category,
-      image: imagePath,
+      image: imageUrl,
       creator: req.user._id,
     });
 
-    if (newPost) {
-      try {
-        const updatedUser = await User.findByIdAndUpdate(
-          { _id: req.user._id },
-          { $inc: { posts: 1 } },
-          { new: true }
-        );
-
-        if (!updatedUser) {
-          return res
-            .status(400)
-            .json({ message: "Failed to update user's post count." });
-        }
-
-        return res.status(200).json(newPost);
-      } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Failed to update user." });
-      }
-    }
+    // Update the user's post count
+    await updateUserPostCount(req.user._id);
 
     return res.status(200).json(newPost);
   } catch (error) {
@@ -56,6 +40,48 @@ const createPost = async (req, res) => {
     return res.status(500).json({ message: "Error creating post." });
   }
 };
+
+// Helper function to upload the image to Cloudinary
+const uploadImageToCloudinary = (imageFile) => {
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader
+      .upload_stream(
+        {
+          folder: 'Blogger',
+          resource_type: 'image',
+        },
+        (error, result) => {
+          if (error) {
+            console.error(error);
+            reject("Failed to upload image to Cloudinary");
+          } else {
+            console.log("Image uploaded successfully!");
+            resolve(result.secure_url);
+          }
+        }
+      )
+      .end(imageFile);
+  });
+};
+
+// Helper function to update the user's post count
+const updateUserPostCount = async (userId) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      { _id: userId },
+      { $inc: { posts: 1 } },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      throw new Error("Failed to update user's post count.");
+    }
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to update user.");
+  }
+};
+
 
 
 
@@ -181,12 +207,39 @@ const deletePost = async (req, res) => {
 const editPost = async (req, res) => {
   const { postID } = req.params;
   const { title, description, category } = req.body;
-  const imagePath = req.file.filename;
+
+  const imageFile = req.file?.buffer;
+
+  const uploadImage = () => {
+    return new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(
+          {
+            folder: 'Blogger',
+            resource_type: 'image'
+          },
+          (error, result) => {
+            if (error) {
+              console.error(error);
+              reject("Failed to upload image to Cloudinary");
+            } else {
+              console.log("Image uploaded successfully!");
+              resolve(result.secure_url);
+            }
+          }
+        )
+        .end(imageFile);
+    });
+  };
+
+  const imageUrl = await uploadImage();
+
+
 
   try {
     const updatedPost = await Post.findByIdAndUpdate(
       postID,
-      { title, description, category, image: imagePath },
+      { title, description, category, image: imageUrl },
       { new: true }
     );
 

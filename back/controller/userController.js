@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
 const User = require('../model/usermodel')
-const path = require('path');
-const fs = require('fs');
+const cloudinary = require('../config/cloudinary.config')
 
 
 // registering user
@@ -91,7 +90,7 @@ const loginUser = async (req, res) => {
 
 
 // getting all users
-// get : api/users
+// get: api/users
 
 const gettingAllUsers = async (req, res) => {
     try {
@@ -179,7 +178,7 @@ const editUser = async (req, res) => {
 };
 
 // changing avatar
- 
+
 const changeAvatar = async (req, res) => {
     try {
         // Check if an image was uploaded
@@ -188,12 +187,36 @@ const changeAvatar = async (req, res) => {
         }
 
         // Get the file path of the uploaded image
-        const imagePath = req.file.filename;
+        const imageFile = req.file.buffer;
 
+        const uploadImage = () => {
+            return new Promise((resolve, reject) => {
+                cloudinary.uploader
+                    .upload_stream(
+                        {
+                            folder: 'Avatar',
+                            resource_type: 'image',
+                            public_id: `avatar-${req.user._id}`
+                        },
+                        (error, result) => {
+                            if (error) {
+                                console.error(error);
+                                reject(new Error("Failed to upload image to Cloudinary"));
+                            } else {
+                                console.log("Image uploaded successfully!");
+                                resolve(result.secure_url);
+                            }
+                        }
+                    )
+                    .end(imageFile);
+            });
+        };
+
+        const imageUrl = await uploadImage();
 
         const updatedUser = await User.findByIdAndUpdate(
             req.user._id,
-            { avatar: imagePath },
+            { avatar: imageUrl },
             { new: true }
         );
         return res.status(200).json({
@@ -202,11 +225,10 @@ const changeAvatar = async (req, res) => {
             email: updatedUser.email,
             avatar: updatedUser.avatar,
             token: genToken(updatedUser._id),
-        }
-        );
+        });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: "Failed to create post." });
+        return res.status(500).json({ message: "Failed to update avatar." });
     }
 };
 
