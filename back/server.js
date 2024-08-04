@@ -3,7 +3,6 @@ const userRouter = require("./router/userRouter");
 const { postRouter } = require("./router/postRouter");
 const cors = require('cors')
 const connectDB = require("./config/connectDB");
-const path = require('path');
 require("dotenv").config();
 require('colors');
 const app = express();
