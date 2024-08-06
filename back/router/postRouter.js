@@ -4,7 +4,7 @@ const multer = require('multer');
 const {
     createPost, getAllPosts, categoryPosts, singlePost, authorPosts, deletePost, editPost
 } = require('../controller/postController');
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 
 const postRouter = express.Router();

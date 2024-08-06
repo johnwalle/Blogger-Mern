@@ -1,7 +1,7 @@
 const express = require("express");
 const userRouter = express.Router();
 const multer = require("multer");
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 const {
   creatingUser,
