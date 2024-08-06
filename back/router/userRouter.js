@@ -30,6 +30,6 @@ userRouter.get("/", gettingAllUsers);
 userRouter.get("/:id", gettingUserById);
 
 // Update a user
-userRouter.put("/", authMiddleware, editUser);
+userRouter.put("/edit-user", authMiddleware, editUser);
 
 module.exports = userRouter;

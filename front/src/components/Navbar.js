@@ -76,7 +76,7 @@ const Navbar = () => {
                             : NoAvatar
                         }
                         alt="Post Thumbnail"
-                        className="rounded-full border border-white w-12 h-12 mr-2"
+                        className="rounded-full object-cover border border-white w-12 h-12 mr-2"
                       />
                     </div>
                   </div>

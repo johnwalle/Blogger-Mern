@@ -40,7 +40,7 @@ const PostAuthor = ({ creator, postID, createdAt, updatedAt }) => {
         <img
           src={avatar ? `${avatar}` : NoAvatar}
           alt="Post Thumbnail"
-          className="rounded-full border border-white w-12 h-12"
+          className="rounded-full border border-white w-12 h-12 object-cover"
         />
       </div>
       <div>

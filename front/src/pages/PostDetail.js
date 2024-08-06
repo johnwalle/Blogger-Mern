@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PostAuthor from "../components/PostAuthor";
 import { Link, useParams } from "react-router-dom";
-import Loader from "../components/Loader";
+import Loader from "../components/Loader/Loader";
 import axios from "axios";
 import { useAuthContext } from "../hooks/useAuthContext";
 import DOMPurify from "dompurify";

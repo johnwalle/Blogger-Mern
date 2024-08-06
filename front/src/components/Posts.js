@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PostItems from './PostItems';
-import Loader from './Loader';
+import Loader from './Loader/Loader';
 import axios from 'axios';
 import { usePostContext } from '../hooks/usePostContext';
 

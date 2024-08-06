@@ -30,7 +30,7 @@ const ChangeAvatar = () => {
             <img
               src={user.avatar ? user.avatar : NoAvatar}
               alt="Post Thumbnail"
-              className="rounded-full border border-white w-24 h-24"
+              className="rounded-full border object-cover border-white w-24 h-24"
             />
           </div>
           <input

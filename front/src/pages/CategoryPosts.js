@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PostItems from '../components/PostItems';
 import axios from 'axios';
-import Loader from '../components/Loader'
+import Loader from '../components/Loader/Loader'
 import Footer from '../components/Footer';
 
 const CategoryPosts = () => {
