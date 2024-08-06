@@ -1,7 +1,8 @@
 const express = require("express");
 const userRouter = express.Router();
 const multer = require("multer");
-const { authMiddleware } = require("../middleware/authMiddleware");
+const path = require('path');
+const authMiddleware = require(path.resolve(__dirname, '../middleware/authMiddleware'));
 
 const {
   creatingUser,
