@@ -13,7 +13,7 @@ Managing blog posts shouldn't be a hassle. This app offers a seamless experience
 - 🔒 **Secure & Scalable** – Built with security and scalability in mind.
 
 ## 🛠 Tech Stack
-- **Frontend:** React, Next.js, Tailwind CSS
+- **Frontend:** React, Tailwind CSS
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB, MySQL
 - **Hosting & Deployment:** Vercel, OnRender
@@ -23,10 +23,10 @@ To run the project locally, follow these steps:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/blogger-app.git
+git clone https://github.com/johnwalle/Blogger-Mern.git
 
 # Navigate into the project
-cd blogger-app
+cd Blogger
 
 # Install dependencies
 npm install
@@ -40,7 +40,7 @@ npm run dev
 2. Create a new blog post using the editor.
 3. Categorize your posts for easy discovery.
 4. Edit or delete posts as needed.
-5. Readers can browse posts by category and keyword search.
+5. Readers can browse posts by category.
 
 ## 📌 Future Enhancements
 - 🗂 **Tagging System** – Additional post organization with tags.
